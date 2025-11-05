@@ -1,0 +1,282 @@
+import { Link } from 'react-router-dom'
+import MainLayout from '../../components/layout/MainLayout'
+
+const HomePage = () => {
+  const features = [
+    {
+      icon: 'videocam',
+      title: 'Video & Audio Analysis',
+      description: 'Evaluate presentations, pitches, and interviews with advanced AI analysis of visual and audio content.',
+    },
+    {
+      icon: 'description',
+      title: 'Document Review',
+      description: 'Process and analyze PDF and Word documents with intelligent text understanding and content evaluation.',
+    },
+    {
+      icon: 'code',
+      title: 'Source Code Assessment',
+      description: 'Judge programming quality, structure, documentation, and best practices across multiple languages.',
+    },
+    {
+      icon: 'tune',
+      title: 'Custom Evaluation Criteria',
+      description: 'Define your own scoring metrics and weightings tailored to your specific evaluation needs.',
+    },
+    {
+      icon: 'assessment',
+      title: 'AI Report Generation',
+      description: 'Generate comprehensive evaluation reports with detailed insights, scores, and improvement recommendations.',
+    },
+    {
+      icon: 'security',
+      title: 'Objective & Consistent',
+      description: 'Eliminate bias and ensure fair, consistent evaluations across all submissions with AI-powered objectivity.',
+    },
+  ]
+
+  const useCases = [
+    {
+      icon: 'emoji_events',
+      title: 'Competitions & Hackathons',
+      description: 'Deliver automated, unbiased scoring for hackathons, innovation challenges, and talent competitions. Ensure every participant receives fair and consistent evaluation based on predefined criteria.',
+    },
+    {
+      icon: 'school',
+      title: 'Education & Training',
+      description: 'Provide objective evaluation of student projects, presentations, and assignments. Help educators save time while delivering detailed, constructive feedback to enhance learning outcomes.',
+    },
+    {
+      icon: 'work',
+      title: 'Recruitment & Interviews',
+      description: 'Pre-screen candidates efficiently using recorded interviews and coding tests. Evaluate technical skills, communication abilities, and cultural fit with data-driven insights.',
+    },
+    {
+      icon: 'trending_up',
+      title: 'Performance Reviews',
+      description: 'Support fair employee evaluations and promotion decisions with objective performance metrics. Provide transparent, criteria-based assessments that reduce bias and improve workplace equity.',
+    },
+  ]
+
+  const scoreCategories = [
+    { name: 'Technical Quality', score: 92 },
+    { name: 'Presentation & Clarity', score: 85 },
+    { name: 'Innovation', score: 88 },
+    { name: 'Documentation', score: 83 },
+  ]
+
+  const insights = [
+    { icon: 'check_circle', text: 'Excellent code structure and adherence to best practices' },
+    { icon: 'check_circle', text: 'Strong presentation skills with clear articulation of concepts' },
+    { icon: 'info', text: 'Consider adding more detailed API documentation for better maintainability' },
+    { icon: 'info', text: 'Include edge case handling in the test suite for comprehensive coverage' },
+  ]
+
+  return (
+    <MainLayout showFooter={true}>
+      {/* Hero Section */}
+      <section className="min-h-screen flex items-center justify-center -mt-32 px-6">
+        <div className="max-w-6xl mx-auto text-center">
+          <div className="fade-in-up">
+            <div className="inline-block glass-card rounded-full px-6 py-3 mb-8">
+              <span className="text-sm font-medium text-white">Powered by Advanced AI Technology</span>
+            </div>
+          </div>
+
+          <h1 className="text-6xl md:text-8xl font-bold mb-6 text-white text-shadow-lg">
+            Meet <span className="gradient-text">Aasim</span>
+          </h1>
+
+          <h2 className="text-3xl md:text-4xl font-semibold mb-6 text-white text-shadow">
+            The AI Judge Agent
+          </h2>
+
+          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto">
+            AI-powered evaluation for competitions, education, and professional assessments.
+          </p>
+
+          <p className="text-lg text-white/80 mb-12 max-w-2xl mx-auto">
+            Aasim analyzes videos, audio, documents, and source code to deliver objective,
+            criteria-based evaluation reports with unmatched fairness and consistency.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-20">
+            <Link to="/register" className="glass-btn-primary rounded-full px-8 py-4 text-lg glow">
+              Try Aasim Now
+            </Link>
+            <a href="#about" className="glass-btn-secondary rounded-full px-8 py-4 text-lg">
+              Learn More
+            </a>
+          </div>
+
+          {/* Floating Icon */}
+          <div className="mt-20 animate-bounce">
+            <div className="inline-block glass-card rounded-3xl p-8">
+              <span className="material-icons text-8xl text-white">psychology</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="glass-card rounded-3xl p-12 md:p-16 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white text-shadow">
+              Intelligent, Fair, Data-Driven
+            </h2>
+            <p className="text-xl text-white/90 leading-relaxed max-w-4xl mx-auto mb-8">
+              Aasim is an intelligent AI-powered digital judge designed to revolutionize how we evaluate
+              and assess content. Whether it's a competition submission, student project, job interview,
+              or performance review, Aasim provides objective, consistent, and insightful evaluations.
+            </p>
+            <p className="text-lg text-white/80 leading-relaxed max-w-3xl mx-auto">
+              With the ability to analyze multiple media types — including videos, audio files,
+              text documents (PDF, Word), and source code — Aasim ensures fairness and transparency
+              in every assessment.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white text-shadow">
+              Powerful Features
+            </h2>
+            <p className="text-xl text-white/80">
+              Multi-modal analysis capabilities for comprehensive evaluation
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <div key={index} className="glass-card-hover rounded-3xl p-8 text-center">
+                <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center rounded-2xl bg-gradient-to-br from-primary-400/30 to-accent-400/30 border border-white/30">
+                  <span className="material-icons text-5xl text-white">{feature.icon}</span>
+                </div>
+                <h3 className="text-2xl font-semibold mb-4 text-white">{feature.title}</h3>
+                <p className="text-white/70">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Use Cases Section */}
+      <section id="use-cases" className="py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white text-shadow">
+              Transform Your Evaluation Process
+            </h2>
+            <p className="text-xl text-white/80">
+              Aasim adapts to diverse assessment scenarios
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {useCases.map((useCase, index) => (
+              <div key={index} className="glass-card rounded-3xl p-10">
+                <div className="flex items-start space-x-4 mb-6">
+                  <div className="w-20 h-20 flex-shrink-0 flex items-center justify-center rounded-2xl bg-gradient-to-br from-primary-400/30 to-accent-400/30 border border-white/30">
+                    <span className="material-icons text-4xl text-white">{useCase.icon}</span>
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-semibold mb-3 text-white">{useCase.title}</h3>
+                    <p className="text-white/70 leading-relaxed">{useCase.description}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Report Preview Section */}
+      <section id="report" className="py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white text-shadow">
+              Detailed AI-Generated Reports
+            </h2>
+            <p className="text-xl text-white/80">
+              Comprehensive insights with actionable feedback
+            </p>
+          </div>
+
+          <div className="glass-card rounded-3xl p-8 md:p-12">
+            <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
+              <h3 className="text-2xl font-semibold text-white">Evaluation Report</h3>
+              <div className="glass-card rounded-full px-6 py-2">
+                <span className="text-sm font-medium text-white">Overall Score: 87/100</span>
+              </div>
+            </div>
+
+            {/* Score Categories */}
+            <div className="space-y-6 mb-8">
+              {scoreCategories.map((category, index) => (
+                <div key={index}>
+                  <div className="flex justify-between mb-2">
+                    <span className="font-medium text-white">{category.name}</span>
+                    <span className="text-white/70">{category.score}/100</span>
+                  </div>
+                  <div className="progress-bar">
+                    <div className="progress-bar-fill" style={{ width: `${category.score}%` }}></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* AI Insights */}
+            <div className="glass-card rounded-2xl p-6">
+              <h4 className="text-lg font-semibold mb-4 flex items-center text-white">
+                <span className="material-icons mr-2">lightbulb</span>
+                AI Insights & Recommendations
+              </h4>
+              <ul className="space-y-3 text-white/80">
+                {insights.map((insight, index) => (
+                  <li key={index} className="flex items-start">
+                    <span className={`material-icons text-sm mr-2 mt-1 ${
+                      insight.icon === 'check_circle' ? 'text-green-300' : 'text-blue-300'
+                    }`}>
+                      {insight.icon}
+                    </span>
+                    <span>{insight.text}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="glass-card rounded-3xl p-12 md:p-16 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white text-shadow">
+              Empower Your Decisions with AI Fairness
+            </h2>
+            <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
+              Join organizations worldwide that trust Aasim for objective, consistent,
+              and insightful evaluations.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Link to="/register" className="glass-btn-primary rounded-full px-8 py-4 text-lg glow">
+                Get Started with Aasim
+              </Link>
+              <a href="#" className="glass-btn-secondary rounded-full px-8 py-4 text-lg">
+                Schedule a Demo
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </MainLayout>
+  )
+}
+
+export default HomePage
