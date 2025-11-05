@@ -43,13 +43,13 @@ const ResetPasswordPage = () => {
         <div className="w-full max-w-md">
           <div className="glass-card rounded-3xl p-8 md:p-10">
             <div className="text-center mb-8">
-              <h1 className="text-4xl font-bold text-white mb-2">Reset Password</h1>
-              <p className="text-white/70">Enter your new password</p>
+              <h1 className="text-4xl font-bold text-gray-900 mb-2">Reset Password</h1>
+              <p className="text-gray-600">Enter your new password</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-white mb-2">
+                <label htmlFor="password" className="block text-sm font-medium text-gray-800 mb-2">
                   New Password
                 </label>
                 <input
@@ -66,7 +66,7 @@ const ResetPasswordPage = () => {
               </div>
 
               <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-white mb-2">
+                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-800 mb-2">
                   Confirm New Password
                 </label>
                 <input

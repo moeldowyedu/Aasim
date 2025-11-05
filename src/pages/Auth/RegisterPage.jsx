@@ -55,13 +55,13 @@ const RegisterPage = () => {
         <div className="w-full max-w-md">
           <div className="glass-card rounded-3xl p-8 md:p-10">
             <div className="text-center mb-8">
-              <h1 className="text-4xl font-bold text-white mb-2">Create Account</h1>
-              <p className="text-white/70">Get started with Aasim today</p>
+              <h1 className="text-4xl font-bold text-gray-900 mb-2">Create Account</h1>
+              <p className="text-gray-600">Get started with Aasim today</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-white mb-2">
+                <label htmlFor="name" className="block text-sm font-medium text-gray-800 mb-2">
                   Full Name
                 </label>
                 <input
@@ -77,7 +77,7 @@ const RegisterPage = () => {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-800 mb-2">
                   Email Address
                 </label>
                 <input
@@ -93,7 +93,7 @@ const RegisterPage = () => {
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-white mb-2">
+                <label htmlFor="password" className="block text-sm font-medium text-gray-800 mb-2">
                   Password
                 </label>
                 <input
@@ -110,7 +110,7 @@ const RegisterPage = () => {
               </div>
 
               <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-white mb-2">
+                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-800 mb-2">
                   Confirm Password
                 </label>
                 <input
@@ -142,9 +142,9 @@ const RegisterPage = () => {
             </form>
 
             <div className="mt-6 text-center">
-              <p className="text-white/70">
+              <p className="text-gray-600">
                 Already have an account?{' '}
-                <Link to="/login" className="text-primary-300 hover:text-primary-200 font-semibold">
+                <Link to="/login" className="text-primary-600 hover:text-primary-700 font-semibold">
                   Sign in
                 </Link>
               </p>

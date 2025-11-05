@@ -26,8 +26,8 @@ const ForgotPasswordPage = () => {
         <div className="w-full max-w-md">
           <div className="glass-card rounded-3xl p-8 md:p-10">
             <div className="text-center mb-8">
-              <h1 className="text-4xl font-bold text-white mb-2">Forgot Password?</h1>
-              <p className="text-white/70">
+              <h1 className="text-4xl font-bold text-gray-900 mb-2">Forgot Password?</h1>
+              <p className="text-gray-600">
                 {isSubmitted
                   ? 'Check your email for reset instructions'
                   : 'Enter your email to reset your password'}
@@ -37,7 +37,7 @@ const ForgotPasswordPage = () => {
             {!isSubmitted ? (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-800 mb-2">
                     Email Address
                   </label>
                   <input
@@ -63,7 +63,7 @@ const ForgotPasswordPage = () => {
               <div className="text-center">
                 <div className="glass-card rounded-2xl p-6 mb-6">
                   <span className="material-icons text-6xl text-green-300 mb-4">check_circle</span>
-                  <p className="text-white/80">
+                  <p className="text-gray-600">
                     We've sent a password reset link to <strong>{email}</strong>
                   </p>
                 </div>
@@ -71,7 +71,7 @@ const ForgotPasswordPage = () => {
             )}
 
             <div className="mt-6 text-center">
-              <Link to="/login" className="text-primary-300 hover:text-primary-200">
+              <Link to="/login" className="text-primary-600 hover:text-primary-700">
                 ← Back to Login
               </Link>
             </div>

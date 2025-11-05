@@ -5,7 +5,8 @@ import RegisterPage from './pages/Auth/RegisterPage'
 import ForgotPasswordPage from './pages/Auth/ForgotPasswordPage'
 import ResetPasswordPage from './pages/Auth/ResetPasswordPage'
 import DashboardPage from './pages/Dashboard/DashboardPage'
-import CreateSubmissionPage from './pages/Submissions/CreateSubmissionPage'
+import AgentSelectionPage from './pages/Submissions/AgentSelectionPage'
+import CreateSubmissionForm from './pages/Submissions/CreateSubmissionForm'
 import SubmissionsListPage from './pages/Submissions/SubmissionsListPage'
 import SubmissionDetailsPage from './pages/Submissions/SubmissionDetailsPage'
 import EvaluationResultsPage from './pages/Evaluations/EvaluationResultsPage'
@@ -40,6 +41,14 @@ function App() {
           }
         />
         <Route
+          path="/agent-select"
+          element={
+            <ProtectedRoute>
+              <AgentSelectionPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/submissions"
           element={
             <ProtectedRoute>
@@ -51,7 +60,7 @@ function App() {
           path="/submissions/create"
           element={
             <ProtectedRoute>
-              <CreateSubmissionPage />
+              <CreateSubmissionForm />
             </ProtectedRoute>
           }
         />

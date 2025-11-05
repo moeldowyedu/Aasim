@@ -48,13 +48,13 @@ const LoginPage = () => {
         <div className="w-full max-w-md">
           <div className="glass-card rounded-3xl p-8 md:p-10">
             <div className="text-center mb-8">
-              <h1 className="text-4xl font-bold text-white mb-2">Welcome Back</h1>
-              <p className="text-white/70">Sign in to continue to Aasim</p>
+              <h1 className="text-4xl font-bold text-gray-900 mb-2">Welcome Back</h1>
+              <p className="text-gray-600">Sign in to continue to Aasim</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-800 mb-2">
                   Email Address
                 </label>
                 <input
@@ -70,7 +70,7 @@ const LoginPage = () => {
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-white mb-2">
+                <label htmlFor="password" className="block text-sm font-medium text-gray-800 mb-2">
                   Password
                 </label>
                 <input
@@ -89,11 +89,11 @@ const LoginPage = () => {
                 <label className="flex items-center">
                   <input
                     type="checkbox"
-                    className="w-4 h-4 rounded border-white/20 bg-white/10 text-primary-600 focus:ring-primary-500"
+                    className="w-4 h-4 rounded border-gray-300 bg-white text-primary-600 focus:ring-primary-500"
                   />
-                  <span className="ml-2 text-sm text-white/70">Remember me</span>
+                  <span className="ml-2 text-sm text-gray-600">Remember me</span>
                 </label>
-                <Link to="/forgot-password" className="text-sm text-primary-300 hover:text-primary-200">
+                <Link to="/forgot-password" className="text-sm text-primary-600 hover:text-primary-700 font-medium">
                   Forgot password?
                 </Link>
               </div>
@@ -115,9 +115,9 @@ const LoginPage = () => {
             </form>
 
             <div className="mt-6 text-center">
-              <p className="text-white/70">
+              <p className="text-gray-600">
                 Don't have an account?{' '}
-                <Link to="/register" className="text-primary-300 hover:text-primary-200 font-semibold">
+                <Link to="/register" className="text-primary-600 hover:text-primary-700 font-semibold">
                   Sign up
                 </Link>
               </p>

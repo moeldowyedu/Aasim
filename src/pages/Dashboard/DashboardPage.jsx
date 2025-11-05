@@ -23,10 +23,10 @@ const DashboardPage = () => {
       <div className="py-8">
         {/* Welcome Section */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white text-shadow mb-2">
+          <h1 className="text-4xl font-bold text-gray-900 text-shadow mb-2">
             Welcome back, {user?.name || 'User'}!
           </h1>
-          <p className="text-white/70">Here's an overview of your evaluation activities</p>
+          <p className="text-gray-600">Here's an overview of your evaluation activities</p>
         </div>
 
         {/* Stats Grid */}
@@ -36,8 +36,8 @@ const DashboardPage = () => {
               <div className="flex items-center justify-between mb-4">
                 <span className={`material-icons text-4xl text-${stat.color}-300`}>{stat.icon}</span>
               </div>
-              <h3 className="text-3xl font-bold text-white mb-1">{stat.value}</h3>
-              <p className="text-white/70 text-sm">{stat.label}</p>
+              <h3 className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</h3>
+              <p className="text-gray-600 text-sm">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -45,8 +45,8 @@ const DashboardPage = () => {
         {/* Recent Submissions */}
         <div className="glass-card rounded-2xl p-6 mb-8">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-white">Recent Submissions</h2>
-            <Link to="/submissions" className="text-primary-300 hover:text-primary-200 flex items-center">
+            <h2 className="text-2xl font-bold text-gray-900">Recent Submissions</h2>
+            <Link to="/submissions" className="text-primary-600 hover:text-primary-700 flex items-center">
               View All
               <span className="material-icons ml-1">arrow_forward</span>
             </Link>
@@ -61,16 +61,16 @@ const DashboardPage = () => {
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-4">
-                    <span className="material-icons text-white/70">description</span>
+                    <span className="material-icons text-gray-600">description</span>
                     <div>
-                      <h3 className="text-white font-semibold">{submission.title}</h3>
-                      <p className="text-white/60 text-sm">{submission.date}</p>
+                      <h3 className="text-gray-900 font-semibold">{submission.title}</h3>
+                      <p className="text-gray-500 text-sm">{submission.date}</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
                     {submission.score && (
                       <div className="glass-card px-4 py-2 rounded-full">
-                        <span className="text-white font-semibold">{submission.score}/100</span>
+                        <span className="text-gray-900 font-semibold">{submission.score}/100</span>
                       </div>
                     )}
                     <span className={`badge ${
@@ -87,22 +87,22 @@ const DashboardPage = () => {
 
         {/* Quick Actions */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Link to="/submissions/create" className="glass-card-hover rounded-2xl p-6 text-center">
+          <Link to="/agent-select" className="glass-card-hover rounded-2xl p-6 text-center">
             <span className="material-icons text-5xl text-primary-300 mb-4">add_circle</span>
-            <h3 className="text-xl font-semibold text-white mb-2">New Submission</h3>
-            <p className="text-white/70 text-sm">Submit content for evaluation</p>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">New Evaluation</h3>
+            <p className="text-gray-600 text-sm">Choose an AI agent and submit for evaluation</p>
           </Link>
 
           <Link to="/criteria" className="glass-card-hover rounded-2xl p-6 text-center">
             <span className="material-icons text-5xl text-accent-300 mb-4">tune</span>
-            <h3 className="text-xl font-semibold text-white mb-2">Manage Criteria</h3>
-            <p className="text-white/70 text-sm">Create custom evaluation criteria</p>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">Manage Criteria</h3>
+            <p className="text-gray-600 text-sm">Create custom evaluation criteria</p>
           </Link>
 
           <Link to="/submissions" className="glass-card-hover rounded-2xl p-6 text-center">
             <span className="material-icons text-5xl text-blue-300 mb-4">history</span>
-            <h3 className="text-xl font-semibold text-white mb-2">View History</h3>
-            <p className="text-white/70 text-sm">Browse past submissions</p>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">View History</h3>
+            <p className="text-gray-600 text-sm">Browse past submissions</p>
           </Link>
         </div>
       </div>
