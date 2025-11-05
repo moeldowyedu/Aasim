@@ -16,11 +16,11 @@ const AgentSelectionPage = () => {
       color: 'from-purple-500 to-pink-500',
     },
     {
-      id: 'document',
-      name: 'Document Review',
-      icon: 'description',
-      description: 'Analyze PDF, Word documents, essays, reports, and written content with intelligent understanding.',
-      features: ['Content analysis', 'Structure evaluation', 'Grammar check', 'Citation review'],
+      id: 'document-image',
+      name: 'Documents and Images Review',
+      icon: 'image',
+      description: 'Analyze documents (PDF, Word) and images (JPG, PNG) with AI-powered content understanding.',
+      features: ['Document analysis', 'Image recognition', 'Text extraction', 'Multi-file support'],
       color: 'from-blue-500 to-cyan-500',
     },
     {

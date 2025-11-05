@@ -67,19 +67,19 @@
     transform: scale(0.98);
   }
 
-  /* Primary button with dark yellow/gold */
+  /* Primary button with purple */
   .glass-btn-primary {
-    background: linear-gradient(135deg, #ffd60a 0%, #f7c600 100%);
+    background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 214, 10, 0.3);
-    @apply text-gray-900 font-bold;
-    box-shadow: 0 4px 20px rgba(255, 214, 10, 0.3);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    @apply text-white font-bold;
+    box-shadow: 0 4px 20px rgba(168, 85, 247, 0.3);
   }
 
   .glass-btn-primary:hover {
-    background: linear-gradient(135deg, #f7c600 0%, #d4a800 100%);
-    box-shadow: 0 8px 30px rgba(255, 214, 10, 0.4);
+    background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+    box-shadow: 0 8px 30px rgba(168, 85, 247, 0.4);
     transform: scale(1.02);
   }
 
@@ -94,7 +94,7 @@
 
   .glass-btn-secondary:hover {
     background: rgba(255, 255, 255, 0.8);
-    border-color: rgba(255, 214, 10, 0.5);
+    border-color: rgba(168, 85, 247, 0.5);
   }
 
   /* Input with iOS glass effect */
@@ -111,22 +111,22 @@
 
   .glass-input:focus {
     background: rgba(255, 255, 255, 0.85);
-    border-color: rgba(255, 214, 10, 0.5);
+    border-color: rgba(168, 85, 247, 0.5);
   }
 
-  /* Gradient text with yellow */
+  /* Gradient text with purple */
   .gradient-text {
     @apply bg-gradient-to-r from-primary-600 via-primary-500 to-accent-600;
     @apply bg-clip-text text-transparent;
   }
 
-  /* Animated gradient background - subtle yellow tones */
+  /* Animated gradient background - subtle purple tones */
   .animated-gradient {
     background: linear-gradient(
       45deg,
       #ffffff,
-      #fffef7,
-      #fff8d6,
+      #faf5ff,
+      #f3e8ff,
       #ffffff
     );
     background-size: 400% 400%;
@@ -201,12 +201,12 @@
 
   .dropzone:hover {
     @apply border-primary-500 bg-white/90;
-    box-shadow: 0 8px 32px rgba(255, 214, 10, 0.15);
+    box-shadow: 0 8px 32px rgba(168, 85, 247, 0.15);
   }
 
   .dropzone-active {
     @apply border-primary-600;
-    background: rgba(255, 246, 214, 0.5);
+    background: rgba(243, 232, 255, 0.5);
   }
 
   /* Table styles */
@@ -300,15 +300,15 @@
     background: linear-gradient(to right, rgba(239, 68, 68, 0.08), transparent);
   }
 
-  /* Glow effect for yellow accent */
+  /* Glow effect for purple accent */
   .glow {
-    box-shadow: 0 0 20px rgba(255, 214, 10, 0.4),
-                0 0 40px rgba(255, 214, 10, 0.2);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4),
+                0 0 40px rgba(168, 85, 247, 0.2);
   }
 
   .glow:hover {
-    box-shadow: 0 0 30px rgba(255, 214, 10, 0.5),
-                0 0 60px rgba(255, 214, 10, 0.3);
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.5),
+                0 0 60px rgba(168, 85, 247, 0.3);
   }
 }
 

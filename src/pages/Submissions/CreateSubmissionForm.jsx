@@ -31,6 +31,54 @@ const CreateSubmissionForm = () => {
 
   const [industryConfig, setIndustryConfig] = useState(null)
 
+  // Agent configurations
+  const agentConfigs = {
+    'video-audio': {
+      name: 'Video & Audio Analysis',
+      acceptedFormats: 'video/*, audio/*',
+      supportedTypes: 'MP4, MOV, AVI, MP3, WAV, M4A',
+      icon: 'videocam',
+      description: 'Upload your video or audio files for AI-powered analysis',
+    },
+    'document-image': {
+      name: 'Documents and Images Review',
+      acceptedFormats: 'image/*, .pdf, .doc, .docx',
+      supportedTypes: 'JPG, PNG, GIF, PDF, DOC, DOCX',
+      icon: 'image',
+      description: 'Upload documents and images for comprehensive review',
+    },
+    'code': {
+      name: 'Source Code Assessment',
+      acceptedFormats: '.js, .jsx, .ts, .tsx, .py, .java, .cpp, .c, .go, .rb, .php, .zip',
+      supportedTypes: 'JS, Python, Java, C++, Go, Ruby, PHP (or ZIP file)',
+      icon: 'code',
+      description: 'Upload your source code files or project archive',
+    },
+    'custom': {
+      name: 'Custom Evaluation',
+      acceptedFormats: '*',
+      supportedTypes: 'All file types',
+      icon: 'tune',
+      description: 'Upload any type of file for custom evaluation',
+    },
+    'report': {
+      name: 'AI Report Generation',
+      acceptedFormats: '.pdf, .doc, .docx, .txt',
+      supportedTypes: 'PDF, DOC, DOCX, TXT',
+      icon: 'assessment',
+      description: 'Upload content for detailed report generation',
+    },
+    'consistent': {
+      name: 'Objective Evaluation',
+      acceptedFormats: '*',
+      supportedTypes: 'All file types',
+      icon: 'security',
+      description: 'Upload your content for fair and consistent evaluation',
+    },
+  }
+
+  const currentAgentConfig = agentConfigs[formData.agent] || agentConfigs['custom']
+
   useEffect(() => {
     if (formData.industry) {
       const config = industryRubrics[formData.industry]
@@ -69,6 +117,7 @@ const CreateSubmissionForm = () => {
       ...prev,
       files: [...prev.files, ...uploadedFiles],
     }))
+    toast.success(`${uploadedFiles.length} file(s) added successfully`)
   }
 
   const removeFile = (index) => {
@@ -76,6 +125,7 @@ const CreateSubmissionForm = () => {
       ...prev,
       files: prev.files.filter((_, i) => i !== index),
     }))
+    toast.success('File removed')
   }
 
   const handleCriteriaChange = (index, field, value) => {
@@ -129,15 +179,44 @@ const CreateSubmissionForm = () => {
     // Here you would send to N8n webhook
     console.log('Submitting to N8n:', formData)
     toast.success('Submission created successfully!')
-    navigate('/submissions')
+
+    // Simulate API call
+    setTimeout(() => {
+      navigate('/submissions')
+    }, 1000)
   }
 
   const totalWeight = formData.customCriteria.reduce((sum, c) => sum + Number(c.weight || 0), 0)
+
+  // Check if file is an image
+  const isImageFile = (file) => {
+    return file.type.startsWith('image/')
+  }
+
+  // Get file preview
+  const getFileIcon = (file) => {
+    if (file.type.startsWith('image/')) return 'image'
+    if (file.type.startsWith('video/')) return 'videocam'
+    if (file.type.startsWith('audio/')) return 'audiotrack'
+    if (file.type.includes('pdf')) return 'picture_as_pdf'
+    if (file.type.includes('word') || file.type.includes('document')) return 'description'
+    if (file.name.match(/\.(js|jsx|ts|tsx|py|java|cpp|c|go|rb|php)$/)) return 'code'
+    return 'insert_drive_file'
+  }
 
   return (
     <MainLayout>
       <div className="py-8">
         <div className="max-w-4xl mx-auto px-6">
+          {/* Header */}
+          <div className="mb-8">
+            <h1 className="text-4xl font-bold text-gray-900 mb-2">Create New Submission</h1>
+            <p className="text-gray-600 flex items-center">
+              <span className="material-icons text-primary-600 mr-2">{currentAgentConfig.icon}</span>
+              {currentAgentConfig.name}
+            </p>
+          </div>
+
           {/* Progress Steps */}
           <div className="mb-8">
             <div className="flex items-center justify-between">
@@ -161,11 +240,7 @@ const CreateSubmissionForm = () => {
                   }`}>
                     {label}
                   </span>
-                  {index < 3 && (
-                    <div className={`flex-1 h-1 mx-4 ${
-                      step > index + 1 ? 'bg-primary-500' : 'bg-gray-300'
-                    }`}></div>
-                  )}
+                  {index < 3 && <div className="flex-1 h-1 bg-gray-300 mx-2"></div>}
                 </div>
               ))}
             </div>
@@ -179,174 +254,169 @@ const CreateSubmissionForm = () => {
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Basic Information</h2>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-800 mb-2">
+                  <label htmlFor="title" className="block text-sm font-medium text-gray-800 mb-2">
                     Submission Title *
                   </label>
                   <input
                     type="text"
+                    id="title"
                     name="title"
                     value={formData.title}
                     onChange={handleChange}
                     className="glass-input w-full"
-                    placeholder="Enter a descriptive title"
+                    placeholder="e.g., Machine Learning Project Evaluation"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-800 mb-2">
+                  <label htmlFor="description" className="block text-sm font-medium text-gray-800 mb-2">
                     Description
                   </label>
                   <textarea
+                    id="description"
                     name="description"
                     value={formData.description}
                     onChange={handleChange}
                     className="glass-input w-full"
                     rows="4"
-                    placeholder="Provide additional context about your submission"
+                    placeholder="Provide a brief description of what needs to be evaluated..."
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-800 mb-2">
-                    Industry / Field *
-                  </label>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {industries.map((industry) => (
-                      <div
-                        key={industry.id}
-                        onClick={() => setFormData(prev => ({ ...prev, industry: industry.id }))}
-                        className={`glass-card rounded-xl p-4 cursor-pointer text-center transition-all ${
-                          formData.industry === industry.id
-                            ? 'ring-2 ring-primary-500 bg-primary-50'
-                            : 'hover:shadow-lg'
-                        }`}
-                      >
-                        <span className={`material-icons text-3xl mb-2 ${
-                          formData.industry === industry.id ? 'text-primary-600' : 'text-gray-600'
-                        }`}>
-                          {industry.icon}
-                        </span>
-                        <p className="text-xs font-medium text-gray-800">{industry.name}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-800 mb-2">
-                    AI Agent *
+                  <label htmlFor="industry" className="block text-sm font-medium text-gray-800 mb-2">
+                    Industry / Category *
                   </label>
                   <select
-                    name="agent"
-                    value={formData.agent}
+                    id="industry"
+                    name="industry"
+                    value={formData.industry}
                     onChange={handleChange}
                     className="glass-input w-full"
                     required
                   >
-                    <option value="">Select an AI Agent</option>
-                    <option value="video-audio">Video & Audio Analysis</option>
-                    <option value="document">Document Review</option>
-                    <option value="code">Source Code Assessment</option>
-                    <option value="custom">Custom Evaluation</option>
-                    <option value="report">AI Report Generation</option>
-                    <option value="consistent">Objective & Consistent</option>
+                    <option value="">Select an industry</option>
+                    {industries.map((ind) => (
+                      <option key={ind.id} value={ind.id}>
+                        {ind.name} - {ind.description}
+                      </option>
+                    ))}
                   </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-800 mb-2">
+                    Selected AI Agent
+                  </label>
+                  <div className="glass-card rounded-xl p-4 flex items-center space-x-3">
+                    <span className="material-icons text-primary-600 text-3xl">{currentAgentConfig.icon}</span>
+                    <div>
+                      <p className="font-semibold text-gray-900">{currentAgentConfig.name}</p>
+                      <p className="text-sm text-gray-600">{currentAgentConfig.description}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
 
             {/* Step 2: Industry-Specific Fields */}
-            {step === 2 && industryConfig && (
+            {step === 2 && (
               <div className="space-y-6">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Industry-Specific Details</h2>
 
-                {industryConfig.additionalFields.map((fieldName) => {
-                  const fieldConfig = additionalFieldConfigs[fieldName]
-                  if (!fieldConfig) return null
+                {industryConfig && industryConfig.additionalFields.length > 0 ? (
+                  industryConfig.additionalFields.map((fieldName) => {
+                    const fieldConfig = additionalFieldConfigs[fieldName]
+                    if (!fieldConfig) return null
 
-                  return (
-                    <div key={fieldName}>
-                      <label className="block text-sm font-medium text-gray-800 mb-2">
-                        {fieldConfig.label} {fieldConfig.required && '*'}
-                      </label>
-
-                      {fieldConfig.type === 'select' ? (
-                        <select
-                          value={formData.industryFields[fieldName] || ''}
-                          onChange={(e) => handleIndustryFieldChange(fieldName, e.target.value)}
-                          className="glass-input w-full"
-                          required={fieldConfig.required}
-                        >
-                          <option value="">Select an option</option>
-                          {fieldConfig.options.map((option) => (
-                            <option key={option} value={option}>{option}</option>
-                          ))}
-                        </select>
-                      ) : fieldConfig.type === 'textarea' ? (
-                        <textarea
-                          value={formData.industryFields[fieldName] || ''}
-                          onChange={(e) => handleIndustryFieldChange(fieldName, e.target.value)}
-                          className="glass-input w-full"
-                          rows="4"
-                          placeholder={fieldConfig.placeholder}
-                          required={fieldConfig.required}
-                        />
-                      ) : fieldConfig.type === 'number' ? (
-                        <input
-                          type="number"
-                          value={formData.industryFields[fieldName] || ''}
-                          onChange={(e) => handleIndustryFieldChange(fieldName, e.target.value)}
-                          className="glass-input w-full"
-                          placeholder={fieldConfig.placeholder}
-                          required={fieldConfig.required}
-                        />
-                      ) : (
-                        <input
-                          type="text"
-                          value={formData.industryFields[fieldName] || ''}
-                          onChange={(e) => handleIndustryFieldChange(fieldName, e.target.value)}
-                          className="glass-input w-full"
-                          placeholder={fieldConfig.placeholder}
-                          required={fieldConfig.required}
-                        />
-                      )}
-                    </div>
-                  )
-                })}
+                    return (
+                      <div key={fieldName}>
+                        <label className="block text-sm font-medium text-gray-800 mb-2">
+                          {fieldConfig.label}
+                          {fieldConfig.required && ' *'}
+                        </label>
+                        {fieldConfig.type === 'select' ? (
+                          <select
+                            value={formData.industryFields[fieldName] || ''}
+                            onChange={(e) => handleIndustryFieldChange(fieldName, e.target.value)}
+                            className="glass-input w-full"
+                            required={fieldConfig.required}
+                          >
+                            <option value="">Select {fieldConfig.label}</option>
+                            {fieldConfig.options.map((option) => (
+                              <option key={option} value={option}>
+                                {option}
+                              </option>
+                            ))}
+                          </select>
+                        ) : fieldConfig.type === 'textarea' ? (
+                          <textarea
+                            value={formData.industryFields[fieldName] || ''}
+                            onChange={(e) => handleIndustryFieldChange(fieldName, e.target.value)}
+                            className="glass-input w-full"
+                            rows="3"
+                            placeholder={fieldConfig.label}
+                            required={fieldConfig.required}
+                          />
+                        ) : fieldConfig.type === 'number' ? (
+                          <input
+                            type="number"
+                            value={formData.industryFields[fieldName] || ''}
+                            onChange={(e) => handleIndustryFieldChange(fieldName, e.target.value)}
+                            className="glass-input w-full"
+                            placeholder={fieldConfig.label}
+                            required={fieldConfig.required}
+                          />
+                        ) : (
+                          <input
+                            type="text"
+                            value={formData.industryFields[fieldName] || ''}
+                            onChange={(e) => handleIndustryFieldChange(fieldName, e.target.value)}
+                            className="glass-input w-full"
+                            placeholder={fieldConfig.label}
+                            required={fieldConfig.required}
+                          />
+                        )}
+                      </div>
+                    )
+                  })
+                ) : (
+                  <p className="text-gray-600">No additional fields required for this industry.</p>
+                )}
               </div>
             )}
 
-            {/* Step 3: Rubric & Grading */}
-            {step === 3 && industryConfig && (
+            {/* Step 3: Evaluation Criteria */}
+            {step === 3 && (
               <div className="space-y-6">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Evaluation Criteria</h2>
 
-                <div className="glass-card rounded-xl p-4">
-                  <label className="flex items-center cursor-pointer">
+                <div>
+                  <label className="flex items-center space-x-3 cursor-pointer">
                     <input
                       type="checkbox"
                       name="useDefaultRubric"
                       checked={formData.useDefaultRubric}
                       onChange={handleChange}
-                      className="w-5 h-5 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                      className="w-5 h-5 text-primary-600 rounded focus:ring-primary-500"
                     />
-                    <span className="ml-3 text-sm font-medium text-gray-800">
-                      Use default rubric for {industries.find(i => i.id === formData.industry)?.name}
+                    <span className="text-sm font-medium text-gray-800">
+                      Use default rubric for {formData.industry || 'selected industry'}
                     </span>
                   </label>
                 </div>
 
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <label className="text-sm font-medium text-gray-800">
-                      Evaluation Criteria (Total Weight: {totalWeight}%)
+                    <label className="block text-sm font-medium text-gray-800">
+                      Evaluation Criteria
                     </label>
                     {!formData.useDefaultRubric && (
                       <button
                         type="button"
                         onClick={addCriterion}
-                        className="glass-btn-secondary rounded-lg px-4 py-2 text-sm"
+                        className="text-primary-600 hover:text-primary-700 text-sm font-semibold flex items-center"
                       >
                         <span className="material-icons text-sm mr-1">add</span>
                         Add Criterion
@@ -399,9 +469,9 @@ const CreateSubmissionForm = () => {
                     ))}
                   </div>
 
-                  {totalWeight !== 100 && (
+                  {totalWeight !== 100 && !formData.useDefaultRubric && (
                     <p className="text-red-600 text-sm mt-2">
-                      ⚠️ Total weight should equal 100%
+                      ⚠️ Total weight should equal 100% (currently {totalWeight}%)
                     </p>
                   )}
                 </div>
@@ -430,11 +500,26 @@ const CreateSubmissionForm = () => {
               <div className="space-y-6">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Upload Files</h2>
 
+                {/* Agent-specific file upload instructions */}
+                <div className="glass-card rounded-xl p-4 bg-primary-50 border border-primary-200">
+                  <div className="flex items-start space-x-3">
+                    <span className="material-icons text-primary-600">{currentAgentConfig.icon}</span>
+                    <div>
+                      <p className="font-semibold text-gray-900 mb-1">{currentAgentConfig.name}</p>
+                      <p className="text-sm text-gray-700 mb-2">{currentAgentConfig.description}</p>
+                      <p className="text-xs text-gray-600">
+                        Supported formats: <strong>{currentAgentConfig.supportedTypes}</strong>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
                 <div className="dropzone">
                   <input
                     type="file"
                     onChange={handleFileUpload}
                     multiple
+                    accept={currentAgentConfig.acceptedFormats}
                     className="hidden"
                     id="file-upload"
                   />
@@ -444,8 +529,11 @@ const CreateSubmissionForm = () => {
                       <p className="text-lg font-semibold text-gray-900 mb-2">
                         Drop files here or click to upload
                       </p>
-                      <p className="text-sm text-gray-600">
-                        Supports video, audio, documents, code files, and images
+                      <p className="text-sm text-gray-600 mb-1">
+                        {currentAgentConfig.supportedTypes}
+                      </p>
+                      <p className="text-xs text-gray-500">
+                        Multiple files supported
                       </p>
                     </div>
                   </label>
@@ -453,24 +541,48 @@ const CreateSubmissionForm = () => {
 
                 {formData.files.length > 0 && (
                   <div>
-                    <h3 className="text-sm font-medium text-gray-800 mb-3">Uploaded Files ({formData.files.length})</h3>
-                    <div className="space-y-2">
+                    <h3 className="text-sm font-medium text-gray-800 mb-3">
+                      Uploaded Files ({formData.files.length})
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {formData.files.map((file, index) => (
-                        <div key={index} className="glass-card rounded-lg p-3 flex items-center justify-between">
-                          <div className="flex items-center space-x-3">
-                            <span className="material-icons text-primary-600">insert_drive_file</span>
-                            <div>
-                              <p className="text-sm font-medium text-gray-900">{file.name}</p>
-                              <p className="text-xs text-gray-600">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
+                        <div key={index} className="glass-card rounded-lg p-4">
+                          {/* Image preview for document-image agent */}
+                          {formData.agent === 'document-image' && isImageFile(file) && (
+                            <div className="mb-3 rounded-lg overflow-hidden">
+                              <img
+                                src={URL.createObjectURL(file)}
+                                alt={file.name}
+                                className="w-full h-40 object-cover"
+                              />
                             </div>
+                          )}
+
+                          <div className="flex items-start justify-between">
+                            <div className="flex items-start space-x-3 flex-1 min-w-0">
+                              <span className="material-icons text-primary-600 flex-shrink-0">
+                                {getFileIcon(file)}
+                              </span>
+                              <div className="flex-1 min-w-0">
+                                <p className="text-sm font-medium text-gray-900 truncate">{file.name}</p>
+                                <p className="text-xs text-gray-600">
+                                  {(file.size / 1024 / 1024).toFixed(2)} MB
+                                </p>
+                                {isImageFile(file) && (
+                                  <span className="inline-block mt-1 px-2 py-0.5 bg-blue-100 text-blue-700 text-xs rounded-full">
+                                    Image
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => removeFile(index)}
+                              className="text-red-600 hover:text-red-700 flex-shrink-0 ml-2"
+                            >
+                              <span className="material-icons text-sm">delete</span>
+                            </button>
                           </div>
-                          <button
-                            type="button"
-                            onClick={() => removeFile(index)}
-                            className="text-red-600 hover:text-red-700"
-                          >
-                            <span className="material-icons">delete</span>
-                          </button>
                         </div>
                       ))}
                     </div>
@@ -485,7 +597,7 @@ const CreateSubmissionForm = () => {
                 <button
                   type="button"
                   onClick={handlePrevStep}
-                  className="glass-btn-secondary rounded-xl px-6 py-3"
+                  className="glass-btn-secondary rounded-xl px-6 py-3 flex items-center"
                 >
                   <span className="material-icons mr-2">arrow_back</span>
                   Previous
@@ -496,7 +608,7 @@ const CreateSubmissionForm = () => {
                 <button
                   type="button"
                   onClick={handleNextStep}
-                  className="glass-btn-primary rounded-xl px-6 py-3 ml-auto"
+                  className="glass-btn-primary rounded-xl px-6 py-3 ml-auto flex items-center"
                 >
                   Next
                   <span className="material-icons ml-2">arrow_forward</span>
@@ -504,7 +616,7 @@ const CreateSubmissionForm = () => {
               ) : (
                 <button
                   type="submit"
-                  className="glass-btn-primary rounded-xl px-8 py-3 ml-auto glow"
+                  className="glass-btn-primary rounded-xl px-8 py-3 ml-auto glow flex items-center"
                 >
                   Submit for Evaluation
                   <span className="material-icons ml-2">send</span>
