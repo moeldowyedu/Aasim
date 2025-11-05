@@ -79,23 +79,23 @@ const HomePage = () => {
         <div className="max-w-6xl mx-auto text-center">
           <div className="fade-in-up">
             <div className="inline-block glass-card rounded-full px-6 py-3 mb-8">
-              <span className="text-sm font-medium text-white">Powered by Advanced AI Technology</span>
+              <span className="text-sm font-medium text-gray-700">Powered by Advanced AI Technology</span>
             </div>
           </div>
 
-          <h1 className="text-6xl md:text-8xl font-bold mb-6 text-white text-shadow-lg">
+          <h1 className="text-6xl md:text-8xl font-bold mb-6 text-gray-900 text-shadow-lg">
             Meet <span className="gradient-text">Aasim</span>
           </h1>
 
-          <h2 className="text-3xl md:text-4xl font-semibold mb-6 text-white text-shadow">
+          <h2 className="text-3xl md:text-4xl font-semibold mb-6 text-gray-800 text-shadow">
             The AI Judge Agent
           </h2>
 
-          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto">
             AI-powered evaluation for competitions, education, and professional assessments.
           </p>
 
-          <p className="text-lg text-white/80 mb-12 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
             Aasim analyzes videos, audio, documents, and source code to deliver objective,
             criteria-based evaluation reports with unmatched fairness and consistency.
           </p>
@@ -112,7 +112,7 @@ const HomePage = () => {
           {/* Floating Icon */}
           <div className="mt-20 animate-bounce">
             <div className="inline-block glass-card rounded-3xl p-8">
-              <span className="material-icons text-8xl text-white">psychology</span>
+              <span className="material-icons text-8xl text-primary-600">psychology</span>
             </div>
           </div>
         </div>
@@ -122,15 +122,15 @@ const HomePage = () => {
       <section id="about" className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="glass-card rounded-3xl p-12 md:p-16 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white text-shadow">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900 text-shadow">
               Intelligent, Fair, Data-Driven
             </h2>
-            <p className="text-xl text-white/90 leading-relaxed max-w-4xl mx-auto mb-8">
+            <p className="text-xl text-gray-700 leading-relaxed max-w-4xl mx-auto mb-8">
               Aasim is an intelligent AI-powered digital judge designed to revolutionize how we evaluate
               and assess content. Whether it's a competition submission, student project, job interview,
               or performance review, Aasim provides objective, consistent, and insightful evaluations.
             </p>
-            <p className="text-lg text-white/80 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
               With the ability to analyze multiple media types — including videos, audio files,
               text documents (PDF, Word), and source code — Aasim ensures fairness and transparency
               in every assessment.
@@ -143,10 +143,10 @@ const HomePage = () => {
       <section id="features" className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white text-shadow">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 text-shadow">
               Powerful Features
             </h2>
-            <p className="text-xl text-white/80">
+            <p className="text-xl text-gray-600">
               Multi-modal analysis capabilities for comprehensive evaluation
             </p>
           </div>
@@ -154,11 +154,11 @@ const HomePage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <div key={index} className="glass-card-hover rounded-3xl p-8 text-center">
-                <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center rounded-2xl bg-gradient-to-br from-primary-400/30 to-accent-400/30 border border-white/30">
-                  <span className="material-icons text-5xl text-white">{feature.icon}</span>
+                <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center rounded-2xl bg-gradient-to-br from-primary-400/30 to-accent-400/30 border border-primary-300/30">
+                  <span className="material-icons text-5xl text-primary-700">{feature.icon}</span>
                 </div>
-                <h3 className="text-2xl font-semibold mb-4 text-white">{feature.title}</h3>
-                <p className="text-white/70">{feature.description}</p>
+                <h3 className="text-2xl font-semibold mb-4 text-gray-900">{feature.title}</h3>
+                <p className="text-gray-600">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -169,10 +169,10 @@ const HomePage = () => {
       <section id="use-cases" className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white text-shadow">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 text-shadow">
               Transform Your Evaluation Process
             </h2>
-            <p className="text-xl text-white/80">
+            <p className="text-xl text-gray-600">
               Aasim adapts to diverse assessment scenarios
             </p>
           </div>
@@ -181,12 +181,12 @@ const HomePage = () => {
             {useCases.map((useCase, index) => (
               <div key={index} className="glass-card rounded-3xl p-10">
                 <div className="flex items-start space-x-4 mb-6">
-                  <div className="w-20 h-20 flex-shrink-0 flex items-center justify-center rounded-2xl bg-gradient-to-br from-primary-400/30 to-accent-400/30 border border-white/30">
-                    <span className="material-icons text-4xl text-white">{useCase.icon}</span>
+                  <div className="w-20 h-20 flex-shrink-0 flex items-center justify-center rounded-2xl bg-gradient-to-br from-primary-400/30 to-accent-400/30 border border-primary-300/30">
+                    <span className="material-icons text-4xl text-primary-700">{useCase.icon}</span>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-semibold mb-3 text-white">{useCase.title}</h3>
-                    <p className="text-white/70 leading-relaxed">{useCase.description}</p>
+                    <h3 className="text-2xl font-semibold mb-3 text-gray-900">{useCase.title}</h3>
+                    <p className="text-gray-600 leading-relaxed">{useCase.description}</p>
                   </div>
                 </div>
               </div>
@@ -199,19 +199,19 @@ const HomePage = () => {
       <section id="report" className="py-20 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white text-shadow">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 text-shadow">
               Detailed AI-Generated Reports
             </h2>
-            <p className="text-xl text-white/80">
+            <p className="text-xl text-gray-600">
               Comprehensive insights with actionable feedback
             </p>
           </div>
 
           <div className="glass-card rounded-3xl p-8 md:p-12">
             <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
-              <h3 className="text-2xl font-semibold text-white">Evaluation Report</h3>
+              <h3 className="text-2xl font-semibold text-gray-900">Evaluation Report</h3>
               <div className="glass-card rounded-full px-6 py-2">
-                <span className="text-sm font-medium text-white">Overall Score: 87/100</span>
+                <span className="text-sm font-medium text-gray-800">Overall Score: 87/100</span>
               </div>
             </div>
 
@@ -220,8 +220,8 @@ const HomePage = () => {
               {scoreCategories.map((category, index) => (
                 <div key={index}>
                   <div className="flex justify-between mb-2">
-                    <span className="font-medium text-white">{category.name}</span>
-                    <span className="text-white/70">{category.score}/100</span>
+                    <span className="font-medium text-gray-800">{category.name}</span>
+                    <span className="text-gray-600">{category.score}/100</span>
                   </div>
                   <div className="progress-bar">
                     <div className="progress-bar-fill" style={{ width: `${category.score}%` }}></div>
@@ -232,15 +232,15 @@ const HomePage = () => {
 
             {/* AI Insights */}
             <div className="glass-card rounded-2xl p-6">
-              <h4 className="text-lg font-semibold mb-4 flex items-center text-white">
-                <span className="material-icons mr-2">lightbulb</span>
+              <h4 className="text-lg font-semibold mb-4 flex items-center text-gray-900">
+                <span className="material-icons mr-2 text-primary-600">lightbulb</span>
                 AI Insights & Recommendations
               </h4>
-              <ul className="space-y-3 text-white/80">
+              <ul className="space-y-3 text-gray-700">
                 {insights.map((insight, index) => (
                   <li key={index} className="flex items-start">
                     <span className={`material-icons text-sm mr-2 mt-1 ${
-                      insight.icon === 'check_circle' ? 'text-green-300' : 'text-blue-300'
+                      insight.icon === 'check_circle' ? 'text-green-600' : 'text-blue-600'
                     }`}>
                       {insight.icon}
                     </span>
@@ -257,10 +257,10 @@ const HomePage = () => {
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="glass-card rounded-3xl p-12 md:p-16 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white text-shadow">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 text-shadow">
               Empower Your Decisions with AI Fairness
             </h2>
-            <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
               Join organizations worldwide that trust Aasim for objective, consistent,
               and insightful evaluations.
             </p>
