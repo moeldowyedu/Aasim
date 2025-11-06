@@ -7,7 +7,8 @@ import { translations } from '../../translations'
 const HomePage = () => {
   const { language } = useLanguage()
   const t = translations[language]
-  const [currentTestimonial, setCurrentTestimonial] = useState(0)
+  const [currentPage, setCurrentPage] = useState(0)
+  const testimonialsPerPage = 3
 
   const testimonials = [
     {
@@ -37,15 +38,36 @@ const HomePage = () => {
       position: "Head of Compliance, FinTech Solutions",
       image: "https://i.pravatar.cc/150?img=33",
       rating: 5
+    },
+    {
+      quote: t.testimonial5Quote || "The AI-powered video analysis has revolutionized our interview process. We can now evaluate candidates objectively and consistently, eliminating unconscious bias while saving our HR team countless hours.",
+      name: "Jennifer Williams",
+      position: "HR Director, Global Enterprise Corp",
+      image: "https://i.pravatar.cc/150?img=49",
+      rating: 5
+    },
+    {
+      quote: t.testimonial6Quote || "Implementing Aasim for our design portfolio reviews has been a game-changer. The detailed feedback helps our students improve significantly, and the consistency ensures everyone is evaluated fairly.",
+      name: "Prof. Omar Hassan",
+      position: "Dean of Design, Cairo University",
+      image: "https://i.pravatar.cc/150?img=14",
+      rating: 5
     }
   ]
 
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
+  const totalPages = Math.ceil(testimonials.length / testimonialsPerPage)
+
+  const nextPage = () => {
+    setCurrentPage((prev) => (prev + 1) % totalPages)
   }
 
-  const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+  const prevPage = () => {
+    setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages)
+  }
+
+  const getCurrentTestimonials = () => {
+    const startIndex = currentPage * testimonialsPerPage
+    return testimonials.slice(startIndex, startIndex + testimonialsPerPage)
   }
 
   const industries = [
@@ -204,69 +226,67 @@ const HomePage = () => {
           </p>
 
           <div className="relative">
-            {/* Testimonial Card */}
-            <div className="glass-card rounded-3xl p-8 md:p-12 max-w-4xl mx-auto">
-              <div className="flex flex-col items-center text-center">
-                {/* Quote Icon */}
-                <div className="text-6xl text-primary-400 mb-6">"</div>
+            {/* Testimonials Grid - 3 Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              {getCurrentTestimonials().map((testimonial, index) => (
+                <div key={index} className="glass-card rounded-2xl p-6 flex flex-col">
+                  {/* Quote Icon */}
+                  <div className="text-4xl text-primary-400 mb-4">"</div>
 
-                {/* Quote Text */}
-                <p className="text-xl md:text-2xl text-gray-800 mb-8 leading-relaxed italic">
-                  {testimonials[currentTestimonial].quote}
-                </p>
-
-                {/* Rating */}
-                <div className="flex items-center mb-6">
-                  {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
-                    <span key={i} className="material-icons text-yellow-400 text-3xl">star</span>
-                  ))}
-                </div>
-
-                {/* Person Info */}
-                <div className="flex flex-col items-center">
-                  <img
-                    src={testimonials[currentTestimonial].image}
-                    alt={testimonials[currentTestimonial].name}
-                    className="w-20 h-20 rounded-full mb-4 border-4 border-primary-200"
-                  />
-                  <h4 className="text-xl font-bold text-gray-900">
-                    {testimonials[currentTestimonial].name}
-                  </h4>
-                  <p className="text-gray-600 font-medium">
-                    {testimonials[currentTestimonial].position}
+                  {/* Quote Text - smaller for 3-column layout */}
+                  <p className="text-base text-gray-800 mb-4 leading-relaxed italic flex-grow">
+                    {testimonial.quote}
                   </p>
+
+                  {/* Rating */}
+                  <div className="flex items-center mb-4 justify-center">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <span key={i} className="material-icons text-yellow-400 text-lg">star</span>
+                    ))}
+                  </div>
+
+                  {/* Person Info */}
+                  <div className="flex flex-col items-center">
+                    <img
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      className="w-16 h-16 rounded-full mb-3 border-3 border-primary-200"
+                    />
+                    <h4 className="text-base font-bold text-gray-900">{testimonial.name}</h4>
+                    <p className="text-sm text-gray-600 text-center">{testimonial.position}</p>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
 
             {/* Navigation Arrows */}
             <button
-              onClick={prevTestimonial}
+              onClick={prevPage}
               className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 glass-card w-12 h-12 rounded-full flex items-center justify-center hover:bg-white/90 transition-all shadow-lg"
-              aria-label="Previous testimonial"
+              aria-label="Previous page"
             >
               <span className="material-icons text-primary-600">chevron_left</span>
             </button>
             <button
-              onClick={nextTestimonial}
+              onClick={nextPage}
               className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 glass-card w-12 h-12 rounded-full flex items-center justify-center hover:bg-white/90 transition-all shadow-lg"
-              aria-label="Next testimonial"
+              aria-label="Next page"
             >
               <span className="material-icons text-primary-600">chevron_right</span>
             </button>
 
-            {/* Dots Indicator */}
+            {/* Dots Indicator - Shows Pages (2 dots for 2 pages) */}
             <div className="flex justify-center mt-8 space-x-2">
-              {testimonials.map((_, index) => (
+              {[...Array(totalPages)].map((_, index) => (
                 <button
                   key={index}
-                  onClick={() => setCurrentTestimonial(index)}
+                  onClick={() => setCurrentPage(index)}
                   className={`w-3 h-3 rounded-full transition-all ${
-                    index === currentTestimonial
+                    index === currentPage
                       ? 'bg-primary-600 w-8'
                       : 'bg-gray-300 hover:bg-gray-400'
                   }`}
-                  aria-label={`Go to testimonial ${index + 1}`}
+                  aria-label={`Go to page ${index + 1}`}
                 />
               ))}
             </div>
