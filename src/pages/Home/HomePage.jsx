@@ -191,7 +191,7 @@ const HomePage = () => {
             {t.industriesTitle}
           </h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
             {industries.map((industry, index) => (
               <div key={index} className="glass-card rounded-2xl p-6 text-center hover:scale-105 transition-transform">
                 <span className="material-icons text-5xl text-primary-600 mb-3">{industry.icon}</span>
@@ -199,6 +199,27 @@ const HomePage = () => {
               </div>
             ))}
           </div>
+
+          {/* Industry Disclaimers */}
+          {t.industriesDisclaimersTitle && (
+            <div className="mt-12">
+              <h3 className="text-2xl font-bold text-center text-gray-900 mb-6 font-heading">
+                {t.industriesDisclaimersTitle}
+              </h3>
+              <div className="space-y-4 max-w-4xl mx-auto">
+                {t.lawDisclaimer && (
+                  <div className="glass-card rounded-2xl p-6 bg-yellow-50 border-2 border-yellow-200">
+                    <p className="text-gray-800 text-center leading-relaxed">{t.lawDisclaimer}</p>
+                  </div>
+                )}
+                {t.healthcareDisclaimer && (
+                  <div className="glass-card rounded-2xl p-6 bg-blue-50 border-2 border-blue-200">
+                    <p className="text-gray-800 text-center leading-relaxed">{t.healthcareDisclaimer}</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
